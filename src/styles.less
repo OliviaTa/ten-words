@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import './variables.less';
+
 html,
 body {
   height: 100%;
   width: 100%;
   margin: 0;
+  font-family: 'Roboto';
 }
 
 h1 {
@@ -12,4 +15,59 @@ h1 {
   font-weight: bold;
   font-size: 64px;
   line-height: 75px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+
+  label {
+    font-size: 16px;
+    line-height: 19px;
+
+    margin-bottom: 8px;
+  }
+
+  input {
+    background: #FFFFFF;
+    border: 1px solid var(--color-aux-a);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px;
+
+    font-size: 16px;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: 0px 0px 5px 5px var(--color-aux-a);
+      -moz-box-shadow: 0px 0px 5px 5px var(--color-aux-a);
+      box-shadow: 0px 0px 12px -4px var(--color-aux-a);
+    }
+  }
+}
+
+.button {
+  width: 224px;
+  height: 40px;
+  border-radius: 4px;
+  outline: none;
+
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_primary {
+    background-color: var(--color-primary-a);
+
+    color: white;
+  }
 }
