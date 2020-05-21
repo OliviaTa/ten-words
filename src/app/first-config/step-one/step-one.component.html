@@ -1,2 +1,14 @@
-Hello
-Step one
+<h1 class="title">Choose themes</h1>
+<p class="title-subtext">These themes will be used to create your own set of words for learning</p>
+<div class="themes">
+  <div
+    *ngFor="let theme of themes"
+    class="theme"
+  >
+    <div class="theme__line">{{ theme }}</div>
+  </div>
+</div>
+<button
+  type="button"
+  class="button button_primary"
+>Next</button>
