@@ -9,6 +9,7 @@ import { AuthService } from './auth/auth.service';
 import { FirstConfigComponent } from './first-config/first-config.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { FirstConfigStepOneComponent } from './first-config/step-one/step-one.component';
+import { FirstConfigService } from './first-config/first-config.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,10 @@ import { FirstConfigStepOneComponent } from './first-config/step-one/step-one.co
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    FirstConfigService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
