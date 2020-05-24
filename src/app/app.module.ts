@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { FirstConfigComponent } from './first-config/first-config.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { FirstConfigStepOneComponent } from './first-config/step-one/step-one.component';
 import { FirstConfigService } from './first-config/first-config.service';
+import { FirstConfigStepTwoComponent } from './first-config/step-two/step-two.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,14 @@ import { FirstConfigService } from './first-config/first-config.service';
     MainLayoutComponent,
 
     FirstConfigComponent,
-    FirstConfigStepOneComponent
+    FirstConfigStepOneComponent,
+    FirstConfigStepTwoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AuthService,

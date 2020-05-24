@@ -6,6 +6,11 @@ import { UserService } from '../providers/user.service';
 @Injectable()
 export class FirstConfigService {
 
+  data = {
+    themes: [],
+    method: 'email'
+  };
+
   constructor(private userService: UserService) { }
 
   readonly themes = ['Music', 'Movies', 'Techno', 'Business', 'Slang', 'Family', 'Idioms', 'Health', 'Art', 'Animals', 'Games', 'Basic']

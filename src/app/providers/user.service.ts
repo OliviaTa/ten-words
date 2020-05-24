@@ -12,20 +12,25 @@ interface User {
 })
 export class UserService {
 
-  private tmpUser = {
+  public tmpUser = {
     id: '1',
     email: 'mralexrabota@gmail.com',
     password: '***',
-    themes: ['1']
+    themes: ['1'],
+    method: 'email',
+    wordsAmount: 1
   };
 
   public getCurrentUser() {
     return this.tmpUser;
   }
 
-  public update(params: { id: string, data: any }) {
-    this.tmpUser.themes = params.data.themes;
-    return this.tmpUser;
+  public update(params: { data: any }) {
+    this.tmpUser = {
+      ...this.tmpUser,
+      ...params.data
+    };
+    return of(this.tmpUser);
   }
 
 }

@@ -1,0 +1,38 @@
+<h1 class="title">Way to get words</h1>
+<p class="title-subtext">Set where and how often you want to get words for learning</p>
+
+<div class="content">
+  <div class="methods">
+    <div class="methods__inner">
+      <div
+        *ngFor="let method of methods"
+        [ngClass]="{ method_active: method.type === activeMethod }"
+        (click)="onMethod(method)"
+        class="method"
+      >
+        <div class="method__name">{{ method.name }}</div>
+        <div class="method__image"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="words-amount field">
+    <label for="words-amount">How many words?</label>
+    <input
+      [ngModel]="wordsAmount"
+      (ngModelChange)="onChangeWordsAmount($event)"
+      min="1"
+      id="words-amount"
+      name="wordsAmount"
+      type="number"
+      required
+    />
+  </div>
+
+</div>
+
+<button
+  (click)="onStart()"
+  type="button"
+  class="button button_primary"
+>Start</button>
