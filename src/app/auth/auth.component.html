@@ -2,35 +2,9 @@
   <div class="container">
     <div class="content">
       <h1>10 Words</h1>
-      <form
-        class="form"
-        [formGroup]="form"
-        (ngSubmit)="onSubmit()"
-      >
-        <div class="field">
-          <label for="email">Email</label>
-          <input
-            formControlName="email"
-            id="email"
-            name="email"
-            placeholder="Your email"
-            type="email"
-            required
-          />
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <input
-            formControlName="password"
-            id="password"
-            name="password"
-            placeholder="Your password"
-            type="password"
-            required
-          />
-        </div>
-        <button class="button button_primary">Go!</button>
-      </form>
+      <div class="form-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

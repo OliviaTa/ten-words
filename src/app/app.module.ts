@@ -11,12 +11,17 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { FirstConfigStepOneComponent } from './first-config/step-one/step-one.component';
 import { FirstConfigService } from './first-config/first-config.service';
 import { FirstConfigStepTwoComponent } from './first-config/step-two/step-two.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     MainLayoutComponent,
+
+    AuthComponent,
+    SignInComponent,
+    SignUpComponent,
 
     FirstConfigComponent,
     FirstConfigStepOneComponent,

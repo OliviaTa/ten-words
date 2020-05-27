@@ -12,14 +12,16 @@ interface User {
 })
 export class UserService {
 
-  public tmpUser = {
-    id: '1',
-    email: 'mralexrabota@gmail.com',
-    password: '***',
-    themes: ['1'],
-    method: 'email',
-    wordsAmount: 1
-  };
+  // public tmpUser = {
+  //   id: '1',
+  //   email: 'mralexrabota@gmail.com',
+  //   password: '***',
+  //   themes: ['1'],
+  //   method: 'email',
+  //   wordsAmount: 1
+  // };
+
+  public tmpUser;
 
   public getCurrentUser() {
     return this.tmpUser;

@@ -1,0 +1,49 @@
+<form
+  class="form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="field">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      id="email"
+      name="email"
+      placeholder="Your email"
+      type="email"
+      required
+    />
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      id="password"
+      name="password"
+      placeholder="Your password"
+      type="password"
+      required
+    />
+  </div>
+  <div class="field">
+    <label for="nickname">Nickname</label>
+    <input
+      formControlName="nickname"
+      id="nickname"
+      name="nickname"
+      placeholder="Your nickname"
+      type="text"
+    />
+  </div>
+  <div class="field">
+    <label for="birthday">Birthday</label>
+    <input
+      formControlName="birthday"
+      id="birthday"
+      name="birthday"
+      type="date"
+    />
+  </div>
+  <button class="button button_primary button_auto_size">Sign Up</button>
+</form>
+<div class="auth-link">Do you already have your account? Let’s <span routerLink="../sign-in">Sign In</span></div>
