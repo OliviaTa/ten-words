@@ -1,5 +1,3 @@
-<h1 class="title">Choose themes</h1>
-<p class="title-subtext">These themes will be used to create your own set of words for learning</p>
 <div class="themes">
   <div
     *ngFor="let theme of themes"
@@ -10,8 +8,3 @@
     <div class="theme__line">{{ theme.name }}</div>
   </div>
 </div>
-<button
-  (click)="onNext()"
-  type="button"
-  class="button button_primary"
->Next</button>

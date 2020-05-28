@@ -27,7 +27,7 @@ export class SignInComponent implements OnInit {
       this.authService.signIn(this.form.value).subscribe({
         next: (user) => {
           console.log(user);
-          this.router.navigateByUrl('/first-config/choose-themes');
+          this.router.navigateByUrl('/profile');
         },
         error: (err) => {
           console.log(err);

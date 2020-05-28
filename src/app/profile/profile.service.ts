@@ -4,12 +4,7 @@ import { map } from 'rxjs/operators';
 import { UserService } from '../providers/user.service';
 
 @Injectable()
-export class FirstConfigService {
-
-  data = {
-    themes: [],
-    method: 'email'
-  };
+export class ProfileService {
 
   constructor(private userService: UserService) { }
 
@@ -20,7 +15,7 @@ export class FirstConfigService {
     }));
 
   public getThemes() {
-    const user = this.userService.getCurrentUser();
+    const user = this.userService.user;
     return of(this.themes).pipe(
       map((themes) => {
         return themes.map((theme) => {
