@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProfileService } from 'src/app/profile/profile.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { ProfileService } from 'src/app/profile/profile.service';
 })
 export class ThemesComponent {
 
+  @Output() themeChange = new EventEmitter();
   public themes = [];
 
   constructor(profileService: ProfileService) {
@@ -23,6 +24,8 @@ export class ThemesComponent {
       return theme.id === id;
     });
     foundTheme.isActive = !foundTheme.isActive;
+
+    this.themeChange.emit(this.themes.filter(theme => theme.isActive));
   }
 
 }

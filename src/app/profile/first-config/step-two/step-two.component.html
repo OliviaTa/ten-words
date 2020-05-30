@@ -1,10 +1,12 @@
-<h1 class="title">Way to get words</h1>
-<p class="title-subtext">Set where and how often you want to get words for learning</p>
-
-<app-settings-form></app-settings-form>
-
-<button
-  (click)="onStart()"
-  type="button"
-  class="button button_primary"
->Start</button>
+<div class="step-two">
+  <h1 class="title">Way to get words</h1>
+  <p class="title-subtext">Set where and how often you want to get words for learning</p>
+  <div class="step-two__container">
+    <app-settings-form (settingChange)="onSettingsChange($event)"></app-settings-form>
+  </div>
+  <button
+    (click)="onStart()"
+    type="button"
+    class="button button_primary"
+  >Start</button>
+</div>

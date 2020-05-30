@@ -3,7 +3,7 @@
     <div class="methods__inner">
       <div
         *ngFor="let method of methods"
-        [ngClass]="{ method_active: method.type === activeMethod }"
+        [ngClass]="{ method_active: method.type === settings.method }"
         (click)="onMethod(method)"
         class="method"
       >
@@ -16,7 +16,7 @@
   <div class="words-amount field">
     <label for="words-amount">How many words?</label>
     <input
-      [ngModel]="wordsAmount"
+      [ngModel]="settings.wordsAmount"
       (ngModelChange)="onChangeWordsAmount($event)"
       min="1"
       id="words-amount"

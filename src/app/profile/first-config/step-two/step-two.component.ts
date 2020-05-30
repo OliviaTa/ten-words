@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirstConfigService } from '../first-config.service';
 import { UserService } from 'src/app/providers/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './step-two.component.html',
@@ -8,16 +9,33 @@ import { UserService } from 'src/app/providers/user.service';
 })
 export class FirstConfigStepTwoComponent {
 
-  constructor(private userService: UserService, private firstConfigService: FirstConfigService) { }
+  private data = {
+    themes: this.firstConfigService.data.themes,
+  };
+
+  constructor(
+    private userService: UserService,
+    private firstConfigService: FirstConfigService,
+    private router: Router
+  ) {
+    if (this.data.themes.length === 0){
+      this.router.navigateByUrl('/first-config/choose-themes');
+    }
+   }
+
+  onSettingsChange(settings) {
+    this.data = {
+      ...this.data,
+      ...settings
+    };
+  }
 
   onStart() {
-    const data = {
-      themes: this.firstConfigService.data.themes,
-      // method: this.activeMethod,
-      // wordsAmount: this.wordsAmount
-    };
-    this.userService.update({ data }).subscribe({
-      next: (result) => console.log(result)
+    this.userService.update({ data: this.data }).subscribe({
+      next: (result) => {
+        console.log(result);
+        this.router.navigateByUrl('/profile');
+      }
     });
   }
 }

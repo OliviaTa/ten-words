@@ -1,17 +1,33 @@
 <div class="profile">
-  <div class="profile__menu">
-    <div class="profile__menu__item">Themes</div>
-    <div class="profile__menu__item">Settings</div>
+  <div class="profile-menu">
+    <div
+      (click)="setActiveTab('themes')"
+      [ngClass]="{ 'profile-menu__item_active': activeTab === 'themes' }"
+      class="profile-menu__item"
+    >Themes</div>
+    <div
+      (click)="setActiveTab('settings')"
+      [ngClass]="{ 'profile-menu__item_active': activeTab === 'settings' }"
+      class="profile-menu__item"
+    >Settings</div>
   </div>
 
-  <div class="themes">
-    <div
-      *ngFor="let theme of themes"
-      [ngClass]="{ theme_active: theme.isActive }"
-      (click)="onThemeClick(theme.id)"
-      class="theme"
-    >
-      <div class="theme__line">{{ theme.name }}</div>
-    </div>
+  <div
+    class="profile__container"
+    [ngSwitch]="activeTab"
+  >
+    <app-themes-form
+      *ngSwitchCase="'themes'"
+      (themeChange)="onChangeData($event)"
+    ></app-themes-form>
+    <app-settings-form
+      *ngSwitchCase="'settings'"
+      (settingChange)="onChangeData($event)"
+    ></app-settings-form>
   </div>
+  <button
+    *ngIf="isButtonVisible"
+    (click)="onSave()"
+    class="button button_primary"
+  >Save</button>
 </div>

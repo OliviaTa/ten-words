@@ -15,10 +15,13 @@ export class FirstConfigStepOneComponent {
     private router: Router,
   ) { }
 
+  onThemeChange(themes){
+    this.themes = themes;
+  }
+
   onNext() {
 
     this.firstConfigService.data.themes = this.themes
-      .filter((theme) => theme.isActive)
       .map((theme) => theme.id);
     console.log(this.firstConfigService.data);
 

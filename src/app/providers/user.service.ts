@@ -3,8 +3,15 @@ import { of, throwError } from 'rxjs';
 import { provideRoutes } from '@angular/router';
 
 interface User {
+  id: string;
   email: string;
+  password?: string;
+  nickname?: string;
+  birthday?: string;
   themes: string[];
+  method: string;
+  wordsAmount: number;
+
 }
 
 @Injectable({
@@ -12,11 +19,11 @@ interface User {
 })
 export class UserService {
 
-  public tmpUser = {
+  public tmpUser: User = {
     id: '1',
     email: 'mralexrabota@gmail.com',
     password: '***',
-    themes: ['1'],
+    themes: [],
     method: 'email',
     wordsAmount: 1
   };

@@ -1,26 +1,49 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProfileService } from './profile.service';
+import { UserService } from '../providers/user.service';
 
 @Component({
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent {
-  public themes = [];
 
-  constructor(private profileService: ProfileService, private router: Router) {
-    profileService.getThemes().subscribe({
-      next: (themes) => {
-        this.themes = themes;
-      }
-    });
+  public activeTab = 'themes';
+  public isButtonVisible = false;
+
+  private data = {};
+
+  constructor(private userService: UserService) { }
+
+  onChangeData(data) {
+    if (Array.isArray(data)) {
+      data = { themes: data.map((theme) => theme.id) };
+    }
+
+    this.data = {
+      ...this.data,
+      ...data
+    };
+
+    this.userService.tmpUser = {
+      ...this.userService.tmpUser,
+      ...this.data
+    };
+
+    this.isButtonVisible = true;
   }
 
-  onThemeClick(id: string) {
-    const foundTheme = this.themes.find((theme) => {
-      return theme.id === id;
-    });
-    foundTheme.isActive = !foundTheme.isActive;
+  setActiveTab(activeTab) {
+    this.activeTab = activeTab;
   }
+
+  onSave() {
+    this.userService.update({ data: this.data })
+      .subscribe({
+        next: (user) => {
+          console.log(user);
+          this.isButtonVisible = false;
+        }
+      });
+  }
+
 }

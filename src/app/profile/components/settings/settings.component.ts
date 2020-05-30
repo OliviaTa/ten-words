@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/providers/user.service';
+
+export interface SettingsOutput{
+  method: string;
+  wordsAmount: number;
+}
 
 @Component({
   selector: 'app-settings-form',
@@ -17,20 +22,28 @@ export class SettingsComponent {
   }];
 
   private user = this.userService.user;
-  public activeMethod = this.user.method || 'email';
-  public wordsAmount = this.user.wordsAmount || 5;
+  public settings: SettingsOutput = {
+    method: this.user.method || 'email',
+    wordsAmount: this.user.wordsAmount || 5
+  };
+
+  @Output() settingChange = new EventEmitter<SettingsOutput>();
 
   constructor(private userService: UserService) { }
 
   onMethod(method) {
-    this.activeMethod = method.type;
+    this.settings.method = method.type;
+
+    this.settingChange.emit(this.settings);
   }
 
   onChangeWordsAmount(value) {
     if (value > 0 && value <= 20) {
-      this.wordsAmount = value;
+      this.settings.wordsAmount = value;
     } else {
-      this.wordsAmount = value <= 0 ? 1 : 20;
+      this.settings.wordsAmount = value <= 0 ? 1 : 20;
     }
+
+    this.settingChange.emit(this.settings);
   }
 }
