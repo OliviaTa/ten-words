@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { of, throwError } from 'rxjs';
 import { provideRoutes } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
-interface User {
+export interface User {
   id: string;
   email: string;
   password?: string;
@@ -19,14 +21,7 @@ interface User {
 })
 export class UserService {
 
-  public tmpUser: User = {
-    id: '1',
-    email: 'mralexrabota@gmail.com',
-    password: '***',
-    themes: [],
-    method: 'email',
-    wordsAmount: 1
-  };
+  public tmpUser: User;
 
   // public tmpUser;
 
@@ -34,12 +29,11 @@ export class UserService {
     return this.tmpUser;
   }
 
+  constructor(private http: HttpClient){}
+
+
   public update(params: { data: any }) {
-    this.tmpUser = {
-      ...this.tmpUser,
-      ...params.data
-    };
-    return of(this.tmpUser);
+    return this.http.put('http://localhost:3000/user', params.data).pipe(tap((user: User) => this.tmpUser = user));
   }
 
 }
