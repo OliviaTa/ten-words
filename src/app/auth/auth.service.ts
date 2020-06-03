@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, throwError } from 'rxjs';
-import { UserService, User } from '../providers/user.service';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { User, UserService } from '../providers/user.service';
 
 interface SignInParams {
   email: string;
@@ -19,11 +19,15 @@ interface SignUpParams {
 @Injectable()
 export class AuthService {
 
-  constructor(private userService: UserService, private http: HttpClient) { }
+  constructor(
+    private userService: UserService,
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   public signIn(params: SignInParams) {
 
-      return this.http.post('http://localhost:3000/sign-in', params).pipe(tap((user: User) => this.userService.tmpUser = user));
+    return this.http.post('http://localhost:3000/sign-in', params).pipe(tap((user: User) => this.userService.tmpUser = user));
 
   }
 
@@ -31,5 +35,10 @@ export class AuthService {
 
     return this.http.post('http://localhost:3000/sign-up', params).pipe(tap((user: User) => this.userService.tmpUser = user));
 
+  }
+
+  public signOut() {
+    this.userService.tmpUser = null;
+    this.router.navigateByUrl('/auth/sign-in');
   }
 }
