@@ -1,0 +1,64 @@
+.notification-container {
+  display: flex;
+  width: 312px;
+  position: relative;
+
+  & img {
+    margin-right: 16px;
+    width: 52px;
+    height: 60px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    width: 166px;
+
+    & .header {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 13px;
+    height: 13px;
+
+    &:hover {
+      cursor: pointer;
+
+      &::before,
+      &:after {
+        background-color: black;
+        transition: background-color 1s;
+      }
+    }
+
+    &:before,
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      right: 7px;
+      height: 13px;
+      width: 2px;
+      background-color: var(--color-aux-a);
+      transition: background-color 0.1s;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
